@@ -10,4 +10,4 @@ export default function App() {
   );
 }
 
-LogBox.ignoreAllLogs();
+// LogBox.ignoreAllLogs();

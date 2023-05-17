@@ -1,6 +1,5 @@
 import { User, onAuthStateChanged } from "firebase/auth";
 import { FC, createContext, useEffect, useMemo, useState } from "react";
-import { Alert } from "react-native";
 import { auth, db, login, logout, register } from "../firebase";
 import { addDoc, collection } from '@firebase/firestore';
 
@@ -30,7 +29,7 @@ export function AuthProvider({ children }: { children: any}) {
         displayName: 'No name',
       });
     } catch (error: any) {
-      Alert.alert('Error reg: ', error);
+      console.log('Error reg: ', error);
     } finally {
       setIsLoading(false);
     }
@@ -42,7 +41,7 @@ export function AuthProvider({ children }: { children: any}) {
     try {
       await login(email, password);
     } catch (error: any) {
-      Alert.alert('Error login: ', error);
+      console.log('Error login: ', error);
     } finally {
       setIsLoading(false);
     }
@@ -54,7 +53,7 @@ export function AuthProvider({ children }: { children: any}) {
     try {
       await logout();
     } catch (error: any) {
-      Alert.alert('Error logout: ', error);
+      console.log('Error logout: ', error);
     } finally {
       setIsLoading(false);
     }

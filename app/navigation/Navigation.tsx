@@ -16,18 +16,48 @@ const Stack = createNativeStackNavigator()
 const Navigation: FC = () => {
   const { user } = useAuth();
 
+  const screensData = [
+    {
+      key: 1,
+      name: 'Home',
+      component: Home,
+    },
+    {
+      key: 2,
+      name: 'Profile',
+      component: Profile,
+    },
+    {
+      key: 3,
+      name: 'Payments',
+      component: Payments,
+    },
+    {
+      key: 1,
+      name: 'Services',
+      component: Services,
+    },
+    {
+      key: 4,
+      name: 'Support',
+      component: Support,
+    },
+    {
+      key: 5,
+      name: 'More',
+      component: More,
+    },
+  ];
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {user
           ? (
             <>
-              <Stack.Screen name="Home" component={Home}/>
-              <Stack.Screen name="Profile" component={Profile}/>
-              <Stack.Screen name="Payments" component={Payments}/>
-              <Stack.Screen name="Services" component={Services}/>
-              <Stack.Screen name="Support" component={Support}/>
-              <Stack.Screen name="More" component={More}/>
+              {screensData.map((screenData) => (
+                <Stack.Screen { ...screenData}/>
+              ))}
             </>
           )
           : <Stack.Screen name="Auth" component={Auth}/>}
