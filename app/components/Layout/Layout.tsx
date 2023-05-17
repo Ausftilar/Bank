@@ -3,7 +3,7 @@ import { ScrollView, View } from "react-native";
 
 interface LayoutProps {
   isScrollView?: boolean,
-  children: JSX.Element,
+  children: any,
 }
 
 export const Layout: FC<LayoutProps> = ({
@@ -16,7 +16,7 @@ export const Layout: FC<LayoutProps> = ({
       height: '100%',
       width: '100%',
       backgroundColor: '#fff',
-      paddingTop: 16,
+      paddingTop: 64,
     }}>
       {isScrollView
         ? <ScrollView>{children}</ScrollView>
