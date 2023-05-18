@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react"
 import { Account } from "./useAccounts.types";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { db } from "../../../../../../../firebase";
+import { useAuth } from "../../../../../../../hooks/useAuth";
 
 export const useAccounts = () => {
-  const [account, setAccount] = useState<Account[]>([]);
+  const { user } = useAuth();
+
+  const [accounts, setAccounts] = useState<Account[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => onSnapshot(
     query(
-      collection(db, 'stories'),
+      collection(db, 'accounts'),
+      where('userId', '==', user?.uid),
     ),
     snapshot => {
-      setAccount(snapshot.docs.map((d) => ({
+      setAccounts(snapshot.docs.map((d) => ({
         _id: d.id,
         ...d.data(),
       }) as Account));
@@ -21,7 +25,7 @@ export const useAccounts = () => {
     }), []);
 
   return {
-    account,
+    accounts,
     isLoading,
   }
 }
