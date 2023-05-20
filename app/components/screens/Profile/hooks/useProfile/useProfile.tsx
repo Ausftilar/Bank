@@ -9,7 +9,7 @@ import {
 } from 'firebase/firestore';
 import { db } from "../../../../../firebase";
 
-interface ProfileProps {
+export interface ProfileProps {
   _id: string,
   displayName: string,
   docId: string,
@@ -26,16 +26,17 @@ export const useProfile = () => {
     query(
       collection(db, 'users'),
       where('_id', '==', user?.uid),
-      limit(1)),
-      snapshot => {
-        const profile = snapshot.docs.map((item) => ({
-          ...(item.data() as Omit<ProfileProps, 'docId'>),
-          docId: item.id,
-        }))[0];
+      limit(1)
+    ),
+    snapshot => {
+      const profile = snapshot.docs.map((item) => ({
+        ...(item.data() as Omit<ProfileProps, 'docId'>),
+        docId: item.id,
+      }))[0];
 
-        setProfile(profile);
-        setName(profile.displayName);
-        setIsLoading(false);
+      setProfile(profile);
+      setName(profile.displayName);
+      setIsLoading(false);
   }), []);
 
   const value = useMemo(() => ({

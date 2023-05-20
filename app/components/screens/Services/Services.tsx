@@ -1,10 +1,11 @@
 import { FC } from "react";
 import { Text, View } from "react-native";
+import { Layout } from "../../Layout/Layout";
 
 export const Services: FC = () => {
   return (
-    <View>
-      <Text>Services</Text>
-    </View>
+    <Layout>
+      <Text>Moscow</Text>
+    </Layout>
   )
 }
