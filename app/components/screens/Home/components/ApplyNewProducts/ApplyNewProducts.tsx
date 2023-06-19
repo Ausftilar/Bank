@@ -29,8 +29,8 @@ export const ApplyNewProducts = () => {
         buttons: {
           text: 'Black',
           resolveValue: 'Tinkoff Black',
-          textSecond: 'All aitlines',
-          resolveValueSecond: 'Tinkoff All Aitlines',
+          textSecond: 'All airlines',
+          resolveValueSecond: 'Tinkoff All Airlines',
         },
       });
 
